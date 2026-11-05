@@ -1,0 +1,7 @@
+id,gravidade,aberto_em,fechado_em,origem
+1,alta,2026-01-10,2026-01-11,producao
+2,media,2026-01-12,2026-01-20,teste
+3,alta,2026-01-15,2026-01-16,producao
+4,baixa,2026-01-18,2026-01-25,teste
+5,media,2026-01-22,2026-01-23,teste
+6,alta,2026-01-25,2026-02-02,producao

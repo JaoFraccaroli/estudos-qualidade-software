@@ -1,0 +1,30 @@
+name: Testes
+
+on: [push, pull_request]
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+
+      - name: Testes unitários (pytest) de cada aula
+        run: |
+          for pasta in aula01-qualidade-de-software aula02-automacao-de-testes aula04-execucao-automatica aula06-testes-de-mutacao aula08-depuracao; do
+            echo "::group::$pasta"
+            (cd "$pasta" && pytest -v) || exit 1
+            echo "::endgroup::"
+          done
+
+      - name: Testes dirigidos por dados (aula 04)
+        working-directory: aula04-testes-dirigidos-por-dados
+        run: python executar_testes.py
+
+      - name: Testes de mutação (aula 06)
+        run: |
+          (cd aula06-testes-de-mutacao && python mutation_runner.py)
+          (cd aula06-mutacao-didatica && python mutation.py)
